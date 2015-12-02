@@ -1,0 +1,408 @@
+
+<html>
+<head>
+<title>Fet Fest Grabbar</title>
+<meta property="og:title" content="Fet Fest Grabbar" />
+<meta property="og:image" content="http://adamcarlsten.com/grabbar/adam.png" />
+<meta property="og:url" content="http://adamcarlsten.com/grabbar" />
+<meta property="og:type" content="website" />
+<script src = "pixi.min.js"></script>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  width: 100%;
+  height: 100%;
+}
+iframe {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+}
+</style>
+</head>
+<body>
+<iframe src="https://www.youtube.com/embed/UHYO3qdFnhg?autoplay=1&loop=1&time=20s&playlist=UHYO3qdFnhg"></iframe>
+<script>
+
+w = 1024, h = 768;
+var renderer = new PIXI.WebGLRenderer(w, h);
+
+document.body.appendChild(renderer.view);
+
+var stage = new PIXI.Container();
+var container = new PIXI.Container();
+var foreground = new PIXI.Container();
+var foreforeground = new PIXI.Container();
+stage.addChild(container);
+stage.addChild(foreground);
+stage.addChild(foreforeground);
+
+var cat, bg, d, f;
+
+PIXI.loader.add('bg', 'hejho.jpg').load(function (loader, resources) {
+  bg = new PIXI.Sprite(resources.bg.texture);
+  bg.position.x = w / 2;
+  bg.position.y = h / 2;
+  bg.scale.x = 1;
+  bg.scale.y = 1;
+  bg.pivot.x = 1509 / 2;
+  bg.pivot.y = 935 / 2;
+  container.addChild(bg);
+});
+
+var pickles = [];
+PIXI.loader.add('pickle', 'Cheese-9.png').load(function (loader, resources) {
+  var shadow = new PIXI.filters.DropShadowFilter();
+  shadow.distance = 0;
+  shadow.blur = 20;
+
+  for (i=0; i<2; i++) {
+    var p = new PIXI.Sprite(resources.pickle.texture);
+    p.position.y = Math.random() * 400;
+    p.pivot.x = 480/2;
+    p.pivot.y = 263/2;
+    p.scale.x = 0.1;
+    p.scale.y = 0.1;
+
+    p.filters = [shadow];
+
+    pickles[i] = p;
+    foreground.addChild(p);
+  }
+});
+
+var texts = [];
+PIXI.loader.add('text', 'text.png').load(function (loader, resources) {
+  var shadow = new PIXI.filters.DropShadowFilter();
+  shadow.distance = 0;
+  shadow.blur = 20;
+
+  for (i=0; i<2; i++) {
+    var t = new PIXI.Sprite(resources.text.texture);
+    t.position.y = Math.random() * 400 + 55;
+    t.pivot.x = 480/2;
+    t.pivot.y = 263/2;
+    t.scale.x = 0.4;
+    t.scale.y = 0.4;
+
+    t.filters = [shadow];
+
+    texts[i] = t;
+    foreground.addChild(t);
+  }
+});
+
+var johns = [];
+PIXI.loader.add('john', 'john.png').load(function (loader, resources) {
+  var shadow = new PIXI.filters.DropShadowFilter();
+  shadow.distance = 0;
+  shadow.blur = 20;
+
+  for (i=0; i<2; i++) {
+    var j = new PIXI.Sprite(resources.john.texture);
+    j.position.y = Math.random() * 400 + 100;
+    j.position.x = w - (Math.random() * 100);
+    j.pivot.x = 480/2;
+    j.pivot.y = 263/2;
+    j.scale.x = 0.7;
+    j.scale.y = 0.7;
+
+    j.filters = [shadow];
+
+    johns[i] = j;
+    foreground.addChild(j);
+  }
+});
+
+var olles = [];
+PIXI.loader.add('olle', 'olle.png').load(function (loader, resources) {
+  var shadow = new PIXI.filters.DropShadowFilter();
+  shadow.distance = 0;
+  shadow.blur = 20;
+
+  for (i=0; i<2; i++) {
+    var ol = new PIXI.Sprite(resources.olle.texture);
+    ol.position.y = Math.random() * 400 + 100;
+    ol.position.x = w - (Math.random() * 100);
+    ol.pivot.x = 480/2;
+    ol.pivot.y = 263/2;
+    ol.scale.x = 0.3;
+    ol.scale.y = 0.3;
+
+    ol.filters = [shadow];
+
+    olles[i] = ol;
+    foreground.addChild(ol);
+  }
+});
+
+var oskars = [];
+PIXI.loader.add('oskar', 'oskar.png').load(function (loader, resources) {
+  var shadow = new PIXI.filters.DropShadowFilter();
+  shadow.distance = 0;
+  shadow.blur = 20;
+
+  for (i=0; i<2; i++) {
+    var o = new PIXI.Sprite(resources.oskar.texture);
+    o.position.y = Math.random() * 400 + 55;
+    o.pivot.x = 480/2;
+    o.pivot.y = 263/2;
+    o.scale.x = 0.8;
+    o.scale.y = 0.8;
+
+    o.filters = [shadow];
+
+    oskars[i] = o;
+    foreground.addChild(o);
+  }
+});
+
+var gustavs = [];
+PIXI.loader.add('gustav', 'gustav.png').load(function (loader, resources) {
+  var shadow = new PIXI.filters.DropShadowFilter();
+  shadow.distance = 0;
+  shadow.blur = 20;
+
+  for (i=0; i<2; i++) {
+    var g = new PIXI.Sprite(resources.gustav.texture);
+    g.position.y = Math.random() * 400 + 100;
+    g.position.x = w - (Math.random() * 100);
+    g.pivot.x = 480/2;
+    g.pivot.y = 263/2;
+    g.scale.x = 0.2;
+    g.scale.y = 0.2;
+
+    g.filters = [shadow];
+
+    gustavs[i] = g;
+    foreground.addChild(g);
+  }
+});
+
+var arons = [];
+PIXI.loader.add('aron', 'aron.png').load(function (loader, resources) {
+  var shadow = new PIXI.filters.DropShadowFilter();
+  shadow.distance = 0;
+  shadow.blur = 20;
+
+  for (i=0; i<2; i++) {
+    var ar = new PIXI.Sprite(resources.aron.texture);
+    ar.position.y = Math.random() * 400 + 100;
+    ar.position.x = w - (Math.random() * 100);
+    ar.pivot.x = 480/2;
+    ar.pivot.y = 263/2;
+    ar.scale.x = 0.2;
+    ar.scale.y = 0.2;
+
+    ar.filters = [shadow];
+
+    arons[i] = ar;
+    foreground.addChild(ar);
+  }
+});
+
+var adams = [];
+PIXI.loader.add('adam', 'adam.png').load(function (loader, resources) {
+  var shadow = new PIXI.filters.DropShadowFilter();
+  shadow.distance = 0;
+  shadow.blur = 20;
+
+  for (i=0; i<2; i++) {
+    var a = new PIXI.Sprite(resources.adam.texture);
+    a.position.y = Math.random() * 400 + 100;
+    a.position.x = w - (Math.random() * 100);
+    a.pivot.x = 480/2;
+    a.pivot.y = 263/2;
+    a.scale.x = 0.3;
+    a.scale.y = 0.3;
+
+    a.filters = [shadow];
+
+    adams[i] = a;
+    foreground.addChild(a);
+  }
+});
+
+var ricks = [];
+PIXI.loader.add('rick', 'rick.png').load(function (loader, resources) {
+  var shadow = new PIXI.filters.DropShadowFilter();
+  shadow.distance = 0;
+  shadow.blur = 20;
+
+  for (i=0; i<2; i++) {
+    var r = new PIXI.Sprite(resources.rick.texture);
+    r.position.y = Math.random() * 400 + 100;
+    r.position.x = w - (Math.random() * 100);
+    r.pivot.x = 480/2;
+    r.pivot.y = 263/2;
+    r.scale.x = 0.2;
+    r.scale.y = 0.2;
+
+    r.filters = [shadow];
+
+    ricks[i] = r;
+    foreground.addChild(r);
+  }
+});
+
+var mackes = [];
+PIXI.loader.add('macke', 'macke.png').load(function (loader, resources) {
+  var shadow = new PIXI.filters.DropShadowFilter();
+  shadow.distance = 0;
+  shadow.blur = 20;
+
+  for (i=0; i<2; i++) {
+    var m = new PIXI.Sprite(resources.macke.texture);
+    m.position.y = Math.random() * 400 + 100;
+    m.position.x = w - (Math.random() * 100);
+    m.pivot.x = 480/2;
+    m.pivot.y = 263/2;
+    m.scale.x = 0.6;
+    m.scale.y = 0.6;
+
+    m.filters = [shadow];
+
+    mackes[i] = m;
+    foreground.addChild(m);
+  }
+});
+
+PIXI.loader.add('cat', 'jakob.png').load(function (loader, resources) {
+  cat = new PIXI.Sprite(resources.cat.texture);
+  cat.pivot.x = 250;
+  cat.pivot.y = 320;
+  cat.position.x = w / 2;
+  cat.position.y = h;
+  cat.scale.x = w / 500 * 0.6;
+  cat.scale.y = h / 333 * 0.6;
+  foreground.addChild(cat);
+});
+
+var rubriks = [];
+PIXI.loader.add('rubrik', 'rubrik.png').load(function (loader, resources) {
+  var shadow = new PIXI.filters.DropShadowFilter();
+  shadow.distance = 0;
+  shadow.blur = 20;
+
+  for (i=0; i<1; i++) {
+    var ru = new PIXI.Sprite(resources.rubrik.texture);
+    ru.position.y = Math.random() * 400 + 100;
+    ru.position.x = w - (Math.random() * 100);
+    ru.scale.x = 0.2;
+    ru.scale.y = 0.2;
+
+    ru.filters = [shadow];
+
+    rubriks[i] = ru;
+    foreforeground.addChild(ru);
+  }
+});
+
+var mousex = w/2, mousey = h/2;
+PIXI.loader.add('catdisplacement', 'jakobdisplacement.jpg').load(function (loader, resources) {
+  catd = new PIXI.Sprite(resources.catdisplacement.texture);
+  catf = new PIXI.filters.DisplacementFilter(catd, 0);
+  cat.filters = [catf];
+  cat.addChild(catd)
+
+  window.onmousemove = function(e) {
+    mousex = e.clientX;
+    mousey = e.clientY;
+  };
+});
+
+
+var f3;
+PIXI.loader.add('displacement', 'clouds.jpg').load(function (loader, resources) {
+  d1 = new PIXI.Sprite(resources.displacement.texture);
+  f1 = new PIXI.filters.DisplacementFilter(d1, 40);
+
+  d1.scale.x = 2;
+  d1.scale.y = 2;
+
+  var f2 = new PIXI.filters.RGBSplitFilter();
+  f2.red.x = -2;
+  f2.red.y = 2;
+  f2.green.x = 0;
+  f2.green.y = 0;
+  f2.blue.x = 2;
+  f2.blue.y = -2;
+
+  // f3 = new PIXI.filters.TiltShiftFilter();
+  // f3.gradientBlur = 800;
+  // f3.blur = 20;
+
+  container.filters = [f2, f1];
+  container.addChild(d1);
+});
+
+var brightness = new PIXI.filters.ColorMatrixFilter();
+brightness.brightness(0.8, 1);
+var bloom = new PIXI.filters.BloomFilter();
+stage.filters = [brightness, bloom];
+
+
+
+function animate() {
+  requestAnimationFrame(animate);
+
+  var d = +new Date();
+
+  d1.position.x = 200 * Math.sin(d / 1200);
+  d1.position.y = 200 * Math.cos(d / 1200);
+
+  f1.scale.x = 170 * Math.sin(d / 1100);
+  f1.scale.y = 170 * Math.cos(d / 1070);
+
+  bg.rotation = 0.1 * Math.sin(d / 10000);
+  cat.rotation = 0.04 * Math.cos(d / 1000);
+
+  function animator(z, speed, height) {
+    for (i=0; i<z.length; i++) {
+      z[i].position.x = ((d/(25+i) + i*700)*speed /* <- to easily change speed */) % (w + 800) - 400;
+      z[i].position.y = 100 * Math.sin(i + d / 5000) + height;
+      z[i].rotation = Math.sin(i-1.5) * d / (2500 + 300 * i);
+    }
+  }
+
+//  for (i=0; i<pickles.length; i++) {
+//    pickles[i].position.x = ((d/(25+i) + i*700)*5 /* <- to easily change speed */) % (w + 800) - 400;
+//    pickles[i].position.y = 100 * Math.sin(i + d / 5000) + 150;
+//    pickles[i].rotation = Math.sin(i-1.5) * d / (2500 + 300 * i);
+//  }
+  animator(texts, 1, 230);
+  animator(pickles, 2, 150);
+  animator(johns, 5, 150);
+  animator(oskars, 8, 500);
+  animator(olles, 4, 300);
+  animator(gustavs, 6, 250);
+  animator(arons, 5.5, 220);
+  animator(adams, 9, 175);
+  animator(ricks, 4.5, 200);
+  animator(mackes, 5.3, 400);
+
+  for (i=0; i<rubriks.length; i++) {
+    rubriks[i].position.x = ((d/(25+i) + i*700)*5 /* <- to easily change speed */) % (w + 800) - 400;
+    rubriks[i].position.y = 100 * Math.sin(i + d / 5000) + 500;
+  }
+
+
+  catf.scale.x = (w/2 - mousex) / 400 + 6 * Math.sin(d/1000) * 0.7;
+  catf.scale.y = (h/2 - mousey) / 400 + 6 * Math.cos(d/1200) * 0.7;
+
+  renderer.render(stage);
+}
+
+PIXI.loader.once('complete', animate);
+
+</script>
+<div style="position:absolute; bottom:-3px; left:-3px; background-color:#000; border-radius:3px">
+  <div style="padding-left:5px; padding-right:5px; padding-bottom:5px; padding-top:2px; font-family:Helvetica,Arial,sans-serif; color:#FFF; font-weight:lighter; font-size:0.8rem">
+    Inspiration from <a style="color:#36ba92" href="http://dn.ht/picklecat/">Picklecat</a>
+  </div>
+</div>
+</body>
+</html>
